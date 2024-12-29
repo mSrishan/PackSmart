@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1008772044624",
+    "project_id": "packsmart-43734",
+    "storage_bucket": "packsmart-43734.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008772044624:android:d94e16b90a25755b543e55",
+        "android_client_info": {
+          "package_name": "com.packsmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3ppGHg_Q2dK_09c6xQbuiaq4wiqmLZO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
