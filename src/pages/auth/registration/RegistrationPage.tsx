@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {
   StyleSheet,
@@ -9,37 +9,47 @@ import {
   Alert,
 } from 'react-native';
 
-const LoginPage = () => {
+const RegistrationPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleLogin = () => {
-      auth()
-          .signInWithEmailAndPassword(username, password)
-          .then(response => {
-              console.log('response : ', response);
-              
-          })
-          .catch(e => {
-              console.log(e);
-          
-          });
+  const handleRegistration = () => {
+    if (!username || !password || !confirmPassword) {
+      Alert.alert('Error', 'All fields are required.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      Alert.alert('Error', 'Passwords do not match.');
+      return;
+    }
+
+    auth()
+      .createUserWithEmailAndPassword(username, password)
+      .then(() => {
+        Alert.alert('Success', 'Account created successfully!');
+        // Add navigation to the LoginPage or dashboard here
+      })
+      .catch(error => {
+        console.error(error);
+        Alert.alert('Error', error.message);
+      });
   };
 
-  const navigateToRegistration = () => {
-    Alert.alert('Redirecting', 'Navigating to registration page...');
-      // Add navigation logic here (e.g., using react-navigation)
-      
+  const navigateToLogin = () => {
+    Alert.alert('Redirecting', 'Navigating to login page...');
+    // Add navigation logic here (e.g., using react-navigation)
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>PackSmart</Text>
-      <Text style={styles.subtitle}>Login to your account</Text>
+      <Text style={styles.subtitle}>Create a new account</Text>
 
       <TextInput
         style={styles.input}
-        placeholder="Username"
+        placeholder="Username (Email)"
         placeholderTextColor="#a1a1a1"
         autoCapitalize="none"
         value={username}
@@ -55,14 +65,23 @@ const LoginPage = () => {
         onChangeText={text => setPassword(text)}
       />
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        placeholderTextColor="#a1a1a1"
+        secureTextEntry
+        value={confirmPassword}
+        onChangeText={text => setConfirmPassword(text)}
+      />
+
+      <TouchableOpacity style={styles.button} onPress={handleRegistration}>
+        <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
 
       <Text style={styles.footerText}>
-        Don't have an account?{' '}
-        <Text style={styles.link} onPress={navigateToRegistration}>
-          Sign up
+        Already have an account?{' '}
+        <Text style={styles.link} onPress={navigateToLogin}>
+          Login
         </Text>
       </Text>
     </View>
@@ -124,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginPage;
+export default RegistrationPage;
