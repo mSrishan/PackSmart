@@ -9,7 +9,7 @@ import {
   Alert,
 } from 'react-native';
 
-const RegistrationPage = () => {
+const RegistrationPage = ({navigation}: {navigation: any}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -29,7 +29,7 @@ const RegistrationPage = () => {
       .createUserWithEmailAndPassword(username, password)
       .then(() => {
         Alert.alert('Success', 'Account created successfully!');
-        // Add navigation to the LoginPage or dashboard here
+        navigation.navigate('Login'); // Navigate to LoginPage
       })
       .catch(error => {
         console.error(error);
@@ -38,8 +38,7 @@ const RegistrationPage = () => {
   };
 
   const navigateToLogin = () => {
-    Alert.alert('Redirecting', 'Navigating to login page...');
-    // Add navigation logic here (e.g., using react-navigation)
+    navigation.navigate('Login'); // Correct route name
   };
 
   return (

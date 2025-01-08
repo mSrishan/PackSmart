@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {
   StyleSheet,
@@ -9,27 +9,23 @@ import {
   Alert,
 } from 'react-native';
 
-const LoginPage = () => {
+const LoginPage = ({navigation}: {navigation: any}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-      auth()
-          .signInWithEmailAndPassword(username, password)
-          .then(response => {
-              console.log('response : ', response);
-              
-          })
-          .catch(e => {
-              console.log(e);
-          
-          });
+    auth()
+      .signInWithEmailAndPassword(username, password)
+      .then(() => {
+        Alert.alert('Success', 'Logged in successfully!');
+      })
+      .catch(error => {
+        Alert.alert('Error', error.message);
+      });
   };
 
   const navigateToRegistration = () => {
-    Alert.alert('Redirecting', 'Navigating to registration page...');
-      // Add navigation logic here (e.g., using react-navigation)
-      
+    navigation.navigate('Registration'); // Correct route name
   };
 
   return (
@@ -39,7 +35,7 @@ const LoginPage = () => {
 
       <TextInput
         style={styles.input}
-        placeholder="Username"
+        placeholder="Username (Email)"
         placeholderTextColor="#a1a1a1"
         autoCapitalize="none"
         value={username}
