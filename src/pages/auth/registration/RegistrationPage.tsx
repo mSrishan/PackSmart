@@ -29,16 +29,12 @@ const RegistrationPage = ({navigation}: {navigation: any}) => {
       .createUserWithEmailAndPassword(username, password)
       .then(() => {
         Alert.alert('Success', 'Account created successfully!');
-        navigation.navigate('Login'); // Navigate to LoginPage
+        navigation.navigate('Login');
       })
       .catch(error => {
         console.error(error);
         Alert.alert('Error', error.message);
       });
-  };
-
-  const navigateToLogin = () => {
-    navigation.navigate('Login'); // Correct route name
   };
 
   return (
@@ -79,7 +75,7 @@ const RegistrationPage = ({navigation}: {navigation: any}) => {
 
       <Text style={styles.footerText}>
         Already have an account?{' '}
-        <Text style={styles.link} onPress={navigateToLogin}>
+        <Text style={styles.link} onPress={() => navigation.navigate('Login')}>
           Login
         </Text>
       </Text>

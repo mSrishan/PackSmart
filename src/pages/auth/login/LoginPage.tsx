@@ -25,7 +25,7 @@ const LoginPage = ({navigation}: {navigation: any}) => {
   };
 
   const navigateToRegistration = () => {
-    navigation.navigate('Registration'); // Correct route name
+    navigation.navigate('Registration');
   };
 
   return (
