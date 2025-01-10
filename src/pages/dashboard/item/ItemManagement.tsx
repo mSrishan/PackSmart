@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
 const ItemManagement = () => {
   return (
     <View>
+      <Button title="Add Item" />
       <Text>ItemManagement</Text>
     </View>
   )

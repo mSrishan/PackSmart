@@ -57,9 +57,9 @@ const App: React.FC = () => {
       ) : (
         <NavigationContainer>
           <Tab.Navigator>
+            <Tab.Screen name="Item" component={ItemManagement} />
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="Customer" component={CustomerManagement} />
-            <Tab.Screen name="Item" component={ItemManagement} />
             <Tab.Screen name="Order" component={OrderManagement} />
             <Tab.Screen name="Place Order" component={PlaceOrder} />
           </Tab.Navigator>

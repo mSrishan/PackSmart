@@ -1,10 +1,20 @@
 import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import auth from '@react-native-firebase/auth';
 
 const Home = () => {
-    function handleLogout(event: GestureResponderEvent): void {
-        throw new Error('Function not implemented.')
-    }
+  const handleLogout = async () => {
+    auth()
+      .signOut()
+      .then(() => {
+        console.log('Logout successful');
+      
+      })
+      .catch(e => {
+        console.log('Logout error : ', e);
+      
+      });
+  };
 
   return (
     <View>
